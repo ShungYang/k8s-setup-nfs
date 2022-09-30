@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-storage
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # or choose another name, must match deployment.yaml's env PROVISIONER_NAME'
+parameters:
+  archiveOnDelete: "false"
+reclaimPolicy: Retain # When the PVC is deleted, the PV still exists. default to Delete (https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy)
